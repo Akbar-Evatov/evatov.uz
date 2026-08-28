@@ -82,6 +82,22 @@ tab. If the domain's DNS is already on Cloudflare, that is the whole process.
 If you later add an API route, server action or ISR, this static path stops
 working — you would move to `@opennextjs/cloudflare` and drop `output: "export"`.
 
+### If the Cloudflare build fails on `npm ci`
+
+An error like `Missing: @emnapi/runtime from lock file` means `package-lock.json`
+drifted out of sync with `package.json`. Cloudflare runs `npm clean-install`,
+which never repairs a lock file — it only validates it.
+
+It happens when packages are added incrementally on a platform whose optional
+native dependencies differ from Cloudflare's Linux builders. Regenerate the lock
+from scratch and verify before pushing:
+
+```bash
+rm -rf node_modules package-lock.json && npm install && npm clean-install
+```
+
+Always commit `package-lock.json` alongside any `package.json` change.
+
 ## Editing content
 
 All copy lives in `src/data/` — no component edits needed for routine updates.
