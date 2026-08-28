@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "evatov-uz",
+  "compatibility_date": "2026-08-28",
+  // Assets-only Worker: there is no `main` script, Cloudflare just serves `out/`.
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+}
