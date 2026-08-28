@@ -35,6 +35,10 @@ The site builds to a fully static bundle in `out/` (`output: "export"` in
 `next.config.ts`), so it deploys as Cloudflare **static assets** — no Workers
 runtime, no OpenNext adapter, no cold starts. Everything fits the free tier.
 
+`wrangler.jsonc` carries a `build.command`, so `wrangler deploy` runs
+`next build` itself before uploading. Nothing depends on a build command being
+configured in the dashboard, and `out/` is never committed.
+
 ### Option A — connect the Git repo (recommended)
 
 Push to GitHub, then in the Cloudflare dashboard: **Workers & Pages → Create →
@@ -42,9 +46,9 @@ Import a repository**, pick the repo, and set:
 
 | Setting | Value |
 | --- | --- |
-| Build command | `npm run build` |
-| Build output directory | `out` |
-| Node version | 22 (already pinned by `.node-version`) |
+| Deploy command | `npx wrangler deploy` |
+| Build command | *leave empty* — `wrangler.jsonc` handles it |
+| Node version | 24 (already pinned by `.node-version`) |
 
 Every push to `main` then redeploys automatically.
 
@@ -58,8 +62,7 @@ npx wrangler login
 npm run deploy
 ```
 
-`deploy` builds and uploads in one step, using `wrangler.jsonc`. To preview the
-exact production bundle locally before shipping:
+To preview the exact production bundle locally before shipping:
 
 ```bash
 npm run preview:dist
@@ -97,6 +100,13 @@ rm -rf node_modules package-lock.json && npm install && npm clean-install
 ```
 
 Always commit `package-lock.json` alongside any `package.json` change.
+
+### If the deploy fails with "assets.directory does not exist"
+
+`wrangler deploy` ran without `out/` having been built. `wrangler.jsonc` now
+builds first via its `build.command`, so this should not recur — but if you
+replace that config, either restore the `build` field or set the project's build
+command to `npm run build`.
 
 ## Editing content
 

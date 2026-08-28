@@ -2,6 +2,11 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "evatov-uz",
   "compatibility_date": "2026-08-28",
+  // Build before uploading, so `wrangler deploy` works on its own even if the
+  // Cloudflare project has no build command configured.
+  "build": {
+    "command": "npm run build"
+  },
   // Assets-only Worker: there is no `main` script, Cloudflare just serves `out/`.
   "assets": {
     "directory": "./out",
