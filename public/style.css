@@ -1,0 +1,54 @@
+body {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2.5rem 1rem 5rem;
+  background: #fffdfa;
+  color: #1a1a1a;
+  font: 17px/1.55 Charter, Georgia, "Times New Roman", serif;
+}
+
+a { color: #8a3324; }
+
+h1 { font-size: 1.7rem; margin: 0 0 0.4rem; }
+h2 { font-size: 1.25rem; margin: 2.5rem 0 0.75rem; }
+h3 { font-size: 1rem; font-weight: 600; margin: 0 0 0.35rem; }
+p { margin: 0 0 0.6rem; }
+
+/* Drawn from the text colour so the palette stays at three values. */
+hr {
+  border: 0;
+  border-top: 1px solid currentColor;
+  opacity: 0.2;
+  margin: 1.75rem 0 0;
+}
+
+header p { margin-bottom: 0.9rem; }
+nav a { margin-right: 1rem; white-space: nowrap; }
+
+/* Projects and contact carry their own spacing, so no bullets there. */
+#projects ul,
+#contact ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#projects > ul > li { margin-bottom: 1.75rem; }
+
+#achievements ul,
+#education ul {
+  padding-left: 1.2rem;
+  margin: 0;
+}
+
+#achievements li,
+#education li,
+#contact li { margin-bottom: 0.35rem; }
+
+/* Year and supporting lines are set apart by size and weight, not colour. */
+.year { font-weight: 400; }
+.meta { font-size: 0.92rem; }
+
+dl { margin: 0; }
+dt { font-weight: 600; margin-top: 0.75rem; }
+dd { margin: 0.1rem 0 0; }
