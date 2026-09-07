@@ -22,7 +22,11 @@ hr {
   margin: 1.75rem 0 0;
 }
 
+header { overflow: hidden; }
 header p { margin-bottom: 0.9rem; }
+
+/* Sits on the first line, opposite the name. */
+.cv { float: right; font-size: 0.92rem; margin-left: 1rem; }
 nav a { margin-right: 1rem; white-space: nowrap; }
 
 /* Projects and contact carry their own spacing, so no bullets there. */
