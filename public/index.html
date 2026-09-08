@@ -5,29 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Akbar Evatov</title>
 <meta name="description" content="Akbar Evatov — computing student at New Uzbekistan University. Builds software and designs the methods behind it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <a class="cv" href="cv.pdf" download="Akbar-Evatov-CV.pdf">Download CV (PDF)</a>
-  <h1>Akbar Evatov</h1>
-  <p>Builds software and designs the methods behind it. Computing student at New Uzbekistan University, Tashkent. From Qarshi.</p>
-  <nav>
-    <a href="#projects">Projects</a>
-    <a href="#achievements">Achievements</a>
-    <a href="#skills">Skills</a>
-    <a href="#education">Education</a>
-    <a href="#contact">Contact</a>
+<div class="wrap">
+
+<header class="sidebar">
+  <div class="identity">
+    <h1>Akbar Evatov</h1>
+    <p>Builds software and designs the methods behind it. Computing student at New Uzbekistan University, Tashkent. From Qarshi.</p>
+    <a class="cv" href="cv.pdf" download="Akbar-Evatov-CV.pdf">Download CV (PDF)</a>
+  </div>
+
+  <nav class="toc" id="toc" aria-label="Table of contents">
+    <div class="toc-title">Contents</div>
+    <a href="#projects" class="on"><span class="n">1</span>Projects</a>
+    <a href="#achievements"><span class="n">2</span>Achievements</a>
+    <a href="#skills"><span class="n">3</span>Skills</a>
+    <a href="#education"><span class="n">4</span>Education</a>
+    <a href="#contact"><span class="n">5</span>Contact</a>
   </nav>
 </header>
-
-<hr>
 
 <main>
 
 <section id="projects">
-  <h2>Projects</h2>
+  <div class="sec-head"><span class="num">1</span><h2>Projects</h2></div>
 
   <ul>
     <li>
@@ -61,7 +68,7 @@
 </section>
 
 <section id="achievements">
-  <h2>Achievements</h2>
+  <div class="sec-head"><span class="num">2</span><h2>Achievements</h2></div>
   <ul>
     <li>2nd place, National AI Hackathon, Qarshi, 2026. 20,000,000 UZS.</li>
     <li>Gold medal, PIMSO (Philippine International Math and Science Olympiad), national stage, 2020.</li>
@@ -71,7 +78,7 @@
 </section>
 
 <section id="skills">
-  <h2>Skills</h2>
+  <div class="sec-head"><span class="num">3</span><h2>Skills</h2></div>
   <dl>
     <dt>Languages</dt>
     <dd>C#, Python, SQL, JavaScript</dd>
@@ -85,7 +92,7 @@
 </section>
 
 <section id="education">
-  <h2>Education</h2>
+  <div class="sec-head"><span class="num">4</span><h2>Education</h2></div>
   <ul>
     <!-- TODO: start year. Then: New Uzbekistan University, computing, YYYY&ndash;present. -->
     <li>New Uzbekistan University, computing. Present.</li>
@@ -94,7 +101,7 @@
 </section>
 
 <section id="contact">
-  <h2>Contact</h2>
+  <div class="sec-head"><span class="num">5</span><h2>Contact</h2></div>
   <ul>
     <!-- TODO: email address. Then: <a href="mailto:ADDRESS">ADDRESS</a> -->
     <li>Email</li>
@@ -108,6 +115,26 @@
 </section>
 
 </main>
+
+</div>
+
+<script>
+  // Active navigation scrollspy
+  const tocLinks = [...document.querySelectorAll('nav.toc a')];
+  const sections = document.querySelectorAll('main section');
+
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach((a) => {
+          a.classList.toggle('on', a.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-15% 0px -70% 0px' });
+
+  sections.forEach((sec) => spy.observe(sec));
+</script>
 
 </body>
 </html>
